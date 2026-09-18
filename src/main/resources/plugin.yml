@@ -1,0 +1,32 @@
+name: NewMinecraftServersCompanion
+version: '${version}'
+main: net.newminecraftservers.companion.NewMinecraftServersCompanion
+description: Claim your NewMinecraftServers listing and view its public status and history in game.
+author: NewMinecraftServers
+website: https://newminecraftservers.net
+api-version: '1.20'
+commands:
+  nms:
+    description: Claim, link, and inspect your NewMinecraftServers listing.
+    usage: /nms help
+    aliases: [newminecraftservers]
+permissions:
+  newminecraftservers.status:
+    description: View status and historical statistics.
+    default: true
+  newminecraftservers.lookup:
+    description: Look up public directory listings.
+    default: true
+  newminecraftservers.listing:
+    description: Open the linked public listing.
+    default: true
+  newminecraftservers.link:
+    description: Link or unlink this server installation.
+    default: op
+  newminecraftservers.claim:
+    description: Show a website claim code in the server list to prove ownership.
+    default: op
+  newminecraftservers.reload:
+    description: Reload the plugin configuration.
+    default: op
+

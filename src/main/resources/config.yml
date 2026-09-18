@@ -1,0 +1,7 @@
+# The production API origin is compiled into the plugin and is not configurable.
+public-address: ""
+listing-slug: ""
+link-token: ""
+request-timeout-seconds: 5
+cache-seconds: 60
+

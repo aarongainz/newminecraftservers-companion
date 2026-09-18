@@ -1,0 +1,13 @@
+{
+  "name": "new-minecraft-servers-companion",
+  "private": true,
+  "description": "Dev tooling for the NewMinecraftServers Companion Paper plugin: a real-player smoke test.",
+  "type": "module",
+  "devDependencies": {
+    "mineflayer": "^4.39.0"
+  },
+  "scripts": {
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "license": "MIT"
+}
