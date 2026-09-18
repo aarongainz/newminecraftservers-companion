@@ -10,6 +10,7 @@
 </p>
 
 <p align="center">
+  <a href="https://www.spigotmc.org/resources/newminecraftservers-companion.138899/"><img alt="Download on SpigotMC" src="https://img.shields.io/badge/download-SpigotMC-ed8106"></a>
   <a href="https://github.com/aarongainz/newminecraftservers-companion/actions/workflows/build.yml"><img alt="Build" src="https://github.com/aarongainz/newminecraftservers-companion/actions/workflows/build.yml/badge.svg"></a>
   <img alt="Paper 1.20.4+" src="https://img.shields.io/badge/Paper-1.20.4%2B-2f7cf6">
   <img alt="Java 17+" src="https://img.shields.io/badge/Java-17%2B-e76f00">
@@ -40,7 +41,7 @@
 
 ## Installation
 
-1. Download `new-minecraft-servers-companion-<version>.jar` from [Releases](https://github.com/aarongainz/newminecraftservers-companion/releases).
+1. Download the latest `new-minecraft-servers-companion-<version>.jar` from [SpigotMC](https://www.spigotmc.org/resources/newminecraftservers-companion.138899/), or build it yourself (see [Building from source](#building-from-source)).
 2. Put it in your server's `plugins/` folder.
 3. Restart the server.
 
