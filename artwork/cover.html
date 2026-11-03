@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- Listing cover (2:1) for plugin sites. Render with: node integrations/paper/scripts/listing-images.mjs -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Monocraft; src: url(../../../app/public/fonts/monocraft-bold.woff2) format("woff2"); font-weight: 700; }
+  @font-face { font-family: Monocraft; src: url(../../../app/public/fonts/monocraft-regular.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: Outfit; src: url(../../../app/public/fonts/outfit-latin.woff2) format("woff2"); font-weight: 100 900; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1024px; height: 512px; overflow: hidden; }
+  body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    padding: 0 72px;
+    background:
+      linear-gradient(90deg, rgba(8, 10, 22, 0.92) 0%, rgba(8, 10, 22, 0.78) 55%, rgba(8, 10, 22, 0.55) 100%),
+      url(../../../app/public/images/block-world-hero.jpg) center / cover;
+    color: #fff;
+    font-family: Outfit, sans-serif;
+  }
+  body::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 12px;
+    background: repeating-linear-gradient(90deg, #3c8527 0 16px, #4f9e34 16px 32px);
+    box-shadow: 0 -4px 0 #1d3f12;
+  }
+  .slot {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 232px;
+    height: 232px;
+    border: 4px solid #000;
+    background: #8b8b8b;
+    box-shadow: inset 6px 6px 0 #c6c6c6, inset -6px -6px 0 #555;
+  }
+  .slot img { width: 192px; height: 192px; image-rendering: pixelated; }
+  .text { display: grid; gap: 14px; min-width: 0; }
+  .kicker {
+    color: #8fe36a;
+    font-family: Monocraft, monospace;
+    font-size: 17px;
+    letter-spacing: 0.14em;
+  }
+  h1 {
+    font-family: Monocraft, monospace;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1.08;
+    text-shadow: 4px 4px 0 #1b1b2e;
+  }
+  h1 span { color: #ffe25c; }
+  .tagline { color: #d9dce4; font-size: 22px; line-height: 1.4; max-width: 560px; }
+  .chat {
+    margin-top: 6px;
+    width: fit-content;
+    background: rgba(0, 0, 0, 0.62);
+    padding: 10px 14px;
+    font-family: Monocraft, monospace;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #aaa;
+    text-shadow: 2px 2px 0 #222;
+  }
+  .chat .cmd { color: #fff; }
+  .chat .nms { color: #6ccb4a; font-weight: 700; }
+  .chat .ok { color: #55ff55; }
+  .chips { display: flex; gap: 10px; margin-top: 4px; }
+  .chip {
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    padding: 5px 12px;
+    font-family: Monocraft, monospace;
+    font-size: 14px;
+    color: #e6e7ea;
+  }
+</style>
+</head>
+<body>
+  <div class="slot"><img src="icon-512.png" alt=""></div>
+  <div class="text">
+    <p class="kicker">PAPER PLUGIN</p>
+    <h1>NewMinecraftServers<br><span>Companion</span></h1>
+    <p class="tagline">Claim your server listing with one command and see your live stats in game.</p>
+    <div class="chat">
+      <div class="cmd">/nms claim NMS-7K3QPX9A</div>
+      <div><span class="nms">NMS</span> » <span class="ok">Verified. You now manage your server.</span></div>
+    </div>
+    <div class="chips">
+      <span class="chip">Paper 1.20.4+</span>
+      <span class="chip">Free &amp; open source</span>
+    </div>
+  </div>
+</body>
+</html>

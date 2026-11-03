@@ -154,6 +154,12 @@ Docker is used automatically when a JDK path is not set. Logs, including the pla
 
 For local development only, the JVM flag `-Dnewminecraftservers.apiBase=http://127.0.0.1:<port>/api/v1/` points the plugin at a local API. Non-loopback values are refused at startup.
 
+## Listing images
+
+`node scripts/listing-images.mjs` renders the plugin-site cover and gallery in `artwork/` with headless Chrome (`CHROME_PATH` overrides its location). Replace `artwork/site-home.png` with a fresh homepage screenshot first if the homepage changed.
+
+See [docs/architecture.md](docs/architecture.md) for the claim and link flows and production validation.
+
 ## Contributing
 
 Issues and pull requests are welcome. Please run `./gradlew build` (and the smoke test for anything touching commands or the MOTD) before opening a PR.

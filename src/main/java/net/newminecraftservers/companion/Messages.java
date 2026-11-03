@@ -1,6 +1,7 @@
 package net.newminecraftservers.companion;
 
 import java.util.List;
+import java.net.URI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -75,9 +76,18 @@ final class Messages {
         }
     }
 
+    static String attributedUrl(String url) {
+        URI uri = URI.create(url);
+        if (!"https".equals(uri.getScheme()) || !"newminecraftservers.net".equals(uri.getHost())) return url;
+        String[] parts = url.split("#", 2);
+        return parts[0] + (uri.getRawQuery() == null ? "?" : "&")
+            + "utm_source=paper_plugin&utm_medium=referral&utm_campaign=companion_plugin"
+            + (parts.length == 2 ? "#" + parts[1] : "");
+    }
+
     static Component link(String label, String url) {
         return Component.text(label, NamedTextColor.AQUA, TextDecoration.UNDERLINED)
-            .clickEvent(ClickEvent.openUrl(url))
+            .clickEvent(ClickEvent.openUrl(attributedUrl(url)))
             .hoverEvent(HoverEvent.showText(Component.text("Open " + url, NamedTextColor.GRAY)));
     }
 

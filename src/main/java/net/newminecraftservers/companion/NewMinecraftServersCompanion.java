@@ -304,7 +304,7 @@ public final class NewMinecraftServersCompanion extends JavaPlugin
                 ? "Linked and added " + safeName(verified.server().name()) + ". Monitoring has started."
                 : "Linked to " + safeName(verified.server().name()) + ". 90-day stats are now available here.");
             Messages.linkLine(sender, "Listing:", SITE + "/server/" + verified.server().slug());
-            Messages.info(sender, "To edit the listing, claim it on the website: " + DASHBOARD.replace("https://", ""));
+            Messages.linkLine(sender, "To edit the listing, claim it on the website:", DASHBOARD);
         });
     }
 

@@ -1,0 +1,161 @@
+<!doctype html>
+<!--
+  Listing gallery images (16:9). Chat lines are the plugin's real output, copied from the
+  player smoke test (build/smoke logs); colours match Messages.java. Scene = URL hash.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Monocraft; src: url(../../../app/public/fonts/monocraft-bold.woff2) format("woff2"); font-weight: 700; }
+  @font-face { font-family: Monocraft; src: url(../../../app/public/fonts/monocraft-regular.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: Outfit; src: url(../../../app/public/fonts/outfit-latin.woff2) format("woff2"); font-weight: 100 900; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 960px; height: 540px; overflow: hidden; }
+  body {
+    position: relative;
+    background: url(../../../app/public/images/block-world-hero.jpg) center / cover;
+    color: #fff;
+    font-family: Outfit, sans-serif;
+  }
+  .scene { display: none; position: absolute; inset: 0; }
+  .shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6, 8, 18, 0.25), rgba(6, 8, 18, 0.72)); }
+  .caption { position: absolute; top: 44px; right: 48px; width: 330px; display: grid; gap: 10px; text-align: right; }
+  .caption .kicker { color: #8fe36a; font-family: Monocraft, monospace; font-size: 13px; letter-spacing: 0.14em; }
+  .caption h2 { font-family: Monocraft, monospace; font-size: 30px; line-height: 1.12; text-shadow: 3px 3px 0 #1b1b2e; }
+  .caption p { color: #d9dce4; font-size: 17px; line-height: 1.45; text-wrap: balance; }
+
+  /* Minecraft chat: translucent line backgrounds, drop-shadowed pixel text. */
+  .chat { position: absolute; left: 20px; bottom: 58px; width: 540px; font-family: Monocraft, monospace; font-size: 13.5px; line-height: 1.62; }
+  .chat div { background: rgba(0, 0, 0, 0.55); padding: 0 8px; white-space: pre; text-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.7); color: #fff; }
+  .input { position: absolute; left: 6px; right: 6px; bottom: 8px; height: 26px; background: rgba(0, 0, 0, 0.6); font-family: Monocraft, monospace; font-size: 13.5px; line-height: 26px; padding: 0 8px; }
+  .input::after { content: "_"; color: #fff; }
+  .g { color: #aaaaaa; } .w { color: #ffffff; } .dg { color: #555555; } .y { color: #ffff55; }
+  .ok { color: #55ff55; } .gold { color: #ffaa00; } .red { color: #ff5555; }
+  .brand { color: #6ccb4a; font-weight: 700; } .aqua { color: #55ffff; text-decoration: underline; }
+  .pfx::before { content: "NMS"; color: #6ccb4a; font-weight: 700; } .pfx::after { content: none; }
+  .code { color: #ffff55; font-weight: 700; }
+
+  /* Multiplayer server list entry. */
+  .serverlist { position: absolute; left: 36px; top: 60px; width: 520px; }
+  .serverlist h3 { font-family: Monocraft, monospace; font-size: 15px; text-align: center; margin-bottom: 12px; text-shadow: 2px 2px 0 #3f3f3f; }
+  .entry { display: flex; gap: 10px; padding: 6px; border: 2px solid #fff; background: rgba(0, 0, 0, 0.55); }
+  .entry img { width: 64px; height: 64px; image-rendering: pixelated; }
+  .entry .body { flex: 1; font-family: Monocraft, monospace; font-size: 13.5px; line-height: 1.5; }
+  .entry .top { display: flex; justify-content: space-between; }
+  .bars { display: inline-flex; gap: 2px; align-items: flex-end; margin-left: 6px; }
+  .bars i { width: 3px; background: #55ff55; } .bars i:nth-child(1) { height: 4px; } .bars i:nth-child(2) { height: 6px; } .bars i:nth-child(3) { height: 8px; } .bars i:nth-child(4) { height: 10px; } .bars i:nth-child(5) { height: 12px; }
+  .note { margin-top: 10px; display: inline-block; background: #ffe25c; color: #1b1b2e; font-family: Monocraft, monospace; font-size: 12px; padding: 4px 8px; }
+
+  /* Website scene: tilted browser window with a floor reflection. */
+  .stage { position: absolute; left: 34px; top: 58px; perspective: 1400px; }
+  .window { width: 540px; transform: rotateY(16deg) rotateX(4deg); transform-origin: left center; box-shadow: 30px 40px 60px rgba(0, 0, 0, 0.6); border-radius: 8px; overflow: hidden; background: #1e1f24; -webkit-box-reflect: below 6px linear-gradient(transparent 62%, rgba(255, 255, 255, 0.22)); }
+  .bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; background: #2b2c33; }
+  .bar i { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; } .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+  .bar span { margin-left: 10px; flex: 1; background: #1a1b20; color: #c6c8cf; font-size: 11px; padding: 2px 10px; border-radius: 4px; }
+  .window img { display: block; width: 548px; height: 343px; margin-bottom: -5px; }
+
+  body.help #help, body.claim #claim, body.stats #stats, body.site #site { display: block; }
+</style>
+</head>
+<body>
+  <!-- 1. Help -->
+  <section class="scene" id="help">
+    <div class="shade"></div>
+    <div class="caption">
+      <p class="kicker">IN GAME AND IN THE CONSOLE</p>
+      <h2>Clickable help for every command</h2>
+      <p>Players see what they can use. Operators also get the owner tools. Click a line to type it.</p>
+    </div>
+    <div class="chat">
+      <div><span class="dg">━━ </span><span class="brand">NewMinecraftServers Companion 0.2.0</span><span class="dg"> ━━</span></div>
+      <div><span class="y">  /nms status</span><span class="g"> — how the website sees this server</span></div>
+      <div><span class="y">  /nms stats [24h|7d|30d|90d]</span><span class="g"> — player and uptime history</span></div>
+      <div><span class="y">  /nms lookup &lt;address&gt;</span><span class="g"> — check any listed server</span></div>
+      <div><span class="y">  /nms listing</span><span class="g"> — open this server's page</span></div>
+      <div><span class="brand" style="font-weight:400">  Server owners</span></div>
+      <div><span class="y">  /nms claim &lt;code&gt;</span><span class="g"> — prove you own this server</span></div>
+      <div><span class="y">  /nms link &lt;address&gt;</span><span class="g"> — connect for 90-day stats</span></div>
+      <div><span class="y">  /nms unlink</span><span class="g"> — disconnect this installation</span></div>
+      <div><span class="y">  /nms reload</span><span class="g"> — reload config.yml</span></div>
+    </div>
+    <div class="input">/nms help</div>
+  </section>
+
+  <!-- 2. Claim -->
+  <section class="scene" id="claim">
+    <div class="shade"></div>
+    <div class="caption">
+      <p class="kicker">ONE COMMAND</p>
+      <h2>Claim your listing in seconds</h2>
+      <p>The code shows in your server list only while we check, then your MOTD is back. server.properties is never touched.</p>
+    </div>
+    <div class="serverlist">
+      <h3>Play Multiplayer</h3>
+      <div class="entry">
+        <img src="icon-512.png" alt="">
+        <div class="body">
+          <div class="top"><span class="w">My Survival SMP</span><span class="g">12/100<span class="bars"><i></i><i></i><i></i><i></i><i></i></span></span></div>
+          <div class="gold">Survival <span class="g">•</span> <span class="ok">Season 4 is live!</span></div>
+          <div class="code">NMS-7K3QPX9A</div>
+        </div>
+      </div>
+      <span class="note">↑ shown only while verifying</span>
+    </div>
+    <div class="chat">
+      <div><span class="brand">NMS</span><span class="dg"> » </span><span class="g">Showing </span><span class="code">NMS-7K3QPX9A</span><span class="g"> in your server list while</span></div>
+      <div><span class="g">      NewMinecraftServers checks it…</span></div>
+      <div><span class="brand">NMS</span><span class="dg"> » </span><span class="g">Your normal MOTD comes back as soon as the check</span></div>
+      <div><span class="g">      finishes (2 minutes at most).</span></div>
+      <div><span class="brand">NMS</span><span class="dg"> » </span><span class="ok">Verified. You now manage My Survival SMP on</span></div>
+      <div><span class="ok">      NewMinecraftServers.</span></div>
+      <div><span class="brand">NMS</span><span class="dg"> » </span><span class="g">Manage it: </span><span class="aqua">newminecraftservers.net/dashboard/servers</span></div>
+    </div>
+    <div class="input">/nms claim NMS-7K3QPX9A</div>
+  </section>
+
+  <!-- 3. Stats -->
+  <section class="scene" id="stats">
+    <div class="shade"></div>
+    <div class="caption">
+      <p class="kicker">NO TAB-SWITCHING</p>
+      <h2>Your server's stats, in chat</h2>
+      <p>Live status, peak and average players, uptime, and your busiest hour. Look up any listed server too.</p>
+    </div>
+    <div class="chat">
+      <div><span class="dg">━━ </span><span class="brand">NewMinecraftServers · My Survival SMP</span><span class="dg"> ━━</span></div>
+      <div><span class="g">  Website last saw: </span><span class="w">Online · 12/100 players · 3m ago</span></div>
+      <div><span class="g">  Paper now: </span><span class="w">14/100 players</span></div>
+      <div><span class="g">  Version observed: </span><span class="w">Paper 1.21.8</span></div>
+      <div><span class="dg">━━ </span><span class="brand">NewMinecraftServers · My Survival SMP · 7d</span><span class="dg"> ━━</span></div>
+      <div><span class="g">  Peak observed: </span><span class="w">41 players · 2026-09-13 20:00 UTC</span></div>
+      <div><span class="g">  Average observed: </span><span class="w">17.4 players</span></div>
+      <div><span class="g">  Observed uptime: </span><span class="w">99.6% across 1,008 checks</span></div>
+      <div><span class="g">  Busiest hour: </span><span class="w">20:00 UTC</span></div>
+      <div><span class="g">  Busiest weekday: </span><span class="w">Saturday (average observed players)</span></div>
+      <div><span class="brand">NMS</span><span class="dg"> » </span><span class="g">Full charts: </span><span class="aqua">newminecraftservers.net/server/my-survival-smp/stats</span></div>
+    </div>
+    <div class="input">/nms stats 7d</div>
+  </section>
+
+  <!-- 4. Website -->
+  <section class="scene" id="site">
+    <div class="shade"></div>
+    <div class="caption">
+      <p class="kicker">NEWMINECRAFTSERVERS.NET</p>
+      <h2>Free listing, live status, real players</h2>
+      <p>Thousands of servers, each checked every 10 minutes. Claim yours to edit its page, links, and banner.</p>
+    </div>
+    <div class="stage">
+      <div class="window">
+        <div class="bar"><i></i><i></i><i></i><span>newminecraftservers.net</span></div>
+        <img src="site-home.png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.body.className = (location.hash || '#help').slice(1);
+  </script>
+</body>
+</html>
